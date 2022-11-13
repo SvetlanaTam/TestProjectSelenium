@@ -16,16 +16,15 @@ public class MainClass {
         driver.manage().window().maximize();
 
         driver.get("http://en.wikipedia.org");
-        WebElement link = driver.findElement(By.linkText("Log in"));
-        WebElement link2 = driver.findElement(By.partialLinkText("Community"));
-        WebElement searchField = driver.findElement(By.name("search"));
-        WebElement searchButton = driver.findElement(By.className("searchButton"));
-        WebElement li = driver.findElement(By.id("n-upload"));
-        WebElement input = driver.findElement(By.tagName("input"));
-        WebElement element = driver.findElement(By.cssSelector("div#simpleSearch"));
-        WebElement logo = driver.findElement(By.xpath("//*[@class='mw-wiki-logo']"));
+        driver.findElement(By.xpath("//input[@id ='searchButton']")).click();
 
-        driver.quit();
+        driver.get("http://github.com");
+        driver.findElement(By.xpath("//a[@href='/login']")).click();
+        WebElement button = driver.findElement(By.xpath("//input[@class='btn btn-primary btn-block js-sign-in-button']"));
+
+        System.out.println("Button text is: " + button.getAttribute("value"));
+
+        button.submit();
     }
 }
 
