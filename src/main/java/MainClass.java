@@ -7,28 +7,42 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import java.util.concurrent.TimeUnit;
 
 public class MainClass {
+    static WebDriver driver;
 
     public static void main(String [] args) {
         System.setProperty("webdriver.gecko.driver", "/Users/svetlanatambolskaa/IdeaProjects/TestProject/drivers/geckodriver");
 
-        WebDriver driver = new FirefoxDriver();
+        driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait (10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
 
-        driver.get("http://en.wikipedia.org");
+        driver.get("https://accounts.google.com/signup/v2/webcreateaccount?biz=false&cc=GE&continue=https%3A%2F%2Fwww.google.com%2F&dsh=S-117393737%3A1669101849521487&flowEntry=SignUp&flowName=GlifWebSignIn&hl=en&ifkv=ARgdvAvrn2C7olkfVMZTocyVJe6eJRgJd7xO7meW6yBDIYRFlz_t_f2hCiXIA5PhohoJ_cIaSECUIg");
 
-        WebElement link = driver.findElement(By.xpath("//li[@id=\"n-aboutsite\"]/a"));
-        System.out.println(link.getText());
-        link.click();
-
-      driver.get("http://github.com");
-      driver.findElement(By.xpath("//div/a[@href=\"/features/actions\"]")).click();
-//       driver.findElement(By.xpath("//a[@href='/login']")).click();driver.findElement(By.xpath("//form[@data-turbo='false']/input[@id='login_field']")).sendKeys("Password");
-//       WebElement button = driver.findElement(By.xpath("//input[@class='btn btn-primary btn-block js-sign-in-button']"));
+        String listName;
+        String option;
 
 
 
-//        button.submit();
+        driver.findElement(By.xpath("//div[@id='lang-chooser']")).click();
+        driver.findElement(By.xpath("(//div[@data-value='de'])[2]")).click();
+
+
+
+
+        }
+        public static void selectOption(String listName, String option){
+        String listXpath = String.format ("//div[@id='%s']",listName);
+        String optionXpath = String.format("(//div[@data-value='%s'])[2]",option);
+            driver.findElement(By.xpath(listXpath)).click();
+            driver.findElement(By.xpath(optionXpath)).click();
+
+
+        }
+
+
+
+
+
+
     }
-}
 
